@@ -4,7 +4,7 @@ RUN apt-get update ; apt-get install -y libxml2-dev libssl-dev libcurl4-openssl-
 
 # https://github.com/docker-library/php/issues/249#issuecomment-446563798
 RUN cd /usr/src && tar -xf php.tar.xz && cd php-7.1.17 && \
-	./configure `php-config --configure-options` --enable-maintainer-zts && make && make install
+	./configure `php-config --configure-options | tr "\n" " "` --enable-maintainer-zts && make && make install
 
 RUN cp /usr/src/php-7.1.17/php.ini-production /usr/local/etc/php/php.ini && \
 	cp /usr/src/php-7.1.17/php.ini-production /usr/local/etc/php/php-cli.ini
